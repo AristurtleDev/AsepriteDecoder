@@ -30,10 +30,10 @@ namespace AsepriteDecoder.IO
         public string Name { get; internal init; }
 
         /// <summary>
-        ///     Gets a <see cref="SliceKey"/> array that contains all slice keys
+        ///     Gets a <see cref="SliceKeyEntry"/> array that contains all slice keys
         ///     for this slice.
         /// </summary>
-        public SliceKey[] Keys { get; internal init; }
+        public SliceKeyEntry[] Keys { get; internal init; }
 
         /// <summary>
         ///     Creates a new <see cref="SliceChunk"/> record initialized with
@@ -49,9 +49,9 @@ namespace AsepriteDecoder.IO
         ///     The name of this slice.
         /// </param>
         /// <param name="keys">
-        ///     The <see cref="SliceKey"/> records that make up this slice.
+        ///     The <see cref="SliceKeyEntry"/> records that make up this slice.
         /// </param>
-        internal SliceChunk(uint count, uint flags, string name, SliceKey[] keys)
+        internal SliceChunk(uint count, uint flags, string name, SliceKeyEntry[] keys)
             => (Count, Flags, Name, Keys) = (count, flags, name, keys);
     }
 }

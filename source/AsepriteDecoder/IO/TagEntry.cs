@@ -10,7 +10,7 @@ namespace AsepriteDecoder.IO
     /// <summary>
     ///     Represents a tag entry for a <see cref="TagsChunk"/>.
     /// </summary>
-    public sealed record Tag
+    public sealed record TagEntry
     {
         /// <summary>
         ///     Gets a value that indicates the starting frame.
@@ -45,7 +45,7 @@ namespace AsepriteDecoder.IO
         public string Name { get; internal init; }
 
         /// <summary>
-        ///     Creates a new <see cref="Tag"/> record initialized with the
+        ///     Creates a new <see cref="TagEntry"/> record initialized with the
         ///     values provided.
         /// </summary>
         /// <param name="from">
@@ -63,7 +63,7 @@ namespace AsepriteDecoder.IO
         /// <param name="name">
         ///     The name of the tag.
         /// </param>
-        internal Tag(ushort from, ushort to, byte direction, byte[] color, string name)
+        internal TagEntry(ushort from, ushort to, byte direction, byte[] color, string name)
             => (From, To, Direction, Color, Name) = (from, to, direction, color, name);
     }
 }

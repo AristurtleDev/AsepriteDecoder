@@ -347,7 +347,7 @@ namespace AsepriteDecoder.IO
         ///     Reads a tags chunk from the underlying stream.
         /// </summary>
         /// <returns>
-        ///     A <see cref="TagsChunk"/> record initialized with the values 
+        ///     A <see cref="TagsChunk"/> record initialized with the values
         ///     read from the underlying stream.
         /// </returns>
         public TagsChunk ReadTagsChunk()
@@ -355,7 +355,7 @@ namespace AsepriteDecoder.IO
             ushort count = ReadWord();
             Skip(8);
 
-            Tag[] tags = new Tag[count];
+            TagEntry[] tags = new TagEntry[count];
             for (int i = 0; i < count; i++)
             {
                 ushort from = ReadWord();
@@ -366,7 +366,7 @@ namespace AsepriteDecoder.IO
                 Skip(1);
                 string name = ReadString();
 
-                tags[i] = new Tag(from, to, direction, color, name);
+                tags[i] = new TagEntry(from, to, direction, color, name);
             }
 
             return new TagsChunk(count, tags);
@@ -452,7 +452,7 @@ namespace AsepriteDecoder.IO
             bool isNinePatch = (flags & 1) != 0;
             bool hasPivot = (flags & 2) != 0;
 
-            SliceKey[] keys = new SliceKey[count];
+            SliceKeyEntry[] keys = new SliceKeyEntry[count];
             for (int i = 0; i < count; i++)
             {
                 uint frame = ReadDword();
@@ -469,7 +469,7 @@ namespace AsepriteDecoder.IO
                 int? pivotX = hasPivot ? ReadLong() : null;
                 int? pivotY = hasPivot ? ReadLong() : null;
 
-                keys[i] = new SliceKey(frame, x, y, width, height)
+                keys[i] = new SliceKeyEntry(frame, x, y, width, height)
                 {
                     CenterX = centerX,
                     CenterY = centerY,
@@ -554,7 +554,7 @@ namespace AsepriteDecoder.IO
         /// </summary>
         /// <returns>
         ///     The 2-byte unsigned integer read from the underlying stream.
-        /// </returns>        
+        /// </returns>
         private ushort ReadWord() => _reader.ReadUInt16();
 
         /// <summary>
@@ -572,7 +572,7 @@ namespace AsepriteDecoder.IO
         /// </summary>
         /// <returns>
         ///     The 4-byte unsigned integer read from the underlying stream.
-        /// </returns>        
+        /// </returns>
         private uint ReadDword() => _reader.ReadUInt32();
 
         /// <summary>
@@ -605,7 +605,7 @@ namespace AsepriteDecoder.IO
         private void Skip(int count) => _stream.Position += count;
 
         /// <summary>
-        ///     Releases resources held by this 
+        ///     Releases resources held by this
         ///     <see cref="AsepriteBinaryReader"/> class instance.
         /// </summary>
         public void Dispose()
@@ -615,7 +615,7 @@ namespace AsepriteDecoder.IO
         }
 
         /// <summary>
-        ///     Releases resources held by this 
+        ///     Releases resources held by this
         ///     <see cref="AsepriteBinaryReader"/> class instance.
         /// </summary>
         /// <param name="disposeManaged">

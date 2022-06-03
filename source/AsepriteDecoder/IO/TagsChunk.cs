@@ -18,10 +18,10 @@ namespace AsepriteDecoder.IO
         public ushort Count { get; internal init; }
 
         /// <summary>
-        ///     Gets a <see cref="Tag"/> array containing all tags read for this
+        ///     Gets a <see cref="TagEntry"/> array containing all tags read for this
         ///     chunk.
         /// </summary>
-        public Tag[] Tags { get; internal init; }
+        public TagEntry[] Tags { get; internal init; }
 
         /// <summary>
         ///     Creates a new <see cref="TagsChunk"/>  record initialized
@@ -33,6 +33,6 @@ namespace AsepriteDecoder.IO
         /// <param name="tags">
         ///     The tags.
         /// </param>
-        public TagsChunk(ushort count, Tag[] tags) => (Count, Tags) = (count, tags);
+        public TagsChunk(ushort count, TagEntry[] tags) => (Count, Tags) = (count, tags);
     }
 }
