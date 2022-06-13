@@ -1,35 +1,28 @@
 using System.Drawing;
 
-namespace AsepriteDecoder
-{
-    public sealed record Tag
-    {
-        public int From { get; internal init; }
-        public int To { get; internal init; }
-        public LoopDirection Direction { get; internal init; }
-        public Color Color { get; internal init; }
-        public string Name { get; internal init; }
+namespace AsepriteDecoder;
 
-        /// <summary>
-        ///     Creates a new <see cref="Tag"/> record initilized with the
-        ///     provided values.
-        /// </summary>
-        /// <param name="from">
-        ///     The starting frame.
-        /// </param>
-        /// <param name="to">
-        ///     The ending frame.
-        /// </param>
-        /// <param name="direction">
-        ///     The animation loop direction.
-        /// </param>
-        /// <param name="color">
-        ///     The color of the tag.
-        /// </param>
-        /// <param name="name">
-        ///     The name of the tag.
-        /// </param>
-        internal Tag(int from, int to, LoopDirection direction, Color color, string name)
-            => (From, To, Direction, Color, Name) = (from, to, direction, color, name);
+public sealed class Tag
+{
+    public ushort From { get; }
+    public ushort To { get; }
+    public LoopDirection LoopDirection { get; }
+    public Color Color { get; }
+    public string Name { get; }
+
+    public Tag(AseBinaryReader reader)
+    {
+        From = reader.ReadWord();
+        To = reader.ReadWord();
+        LoopDirection = (LoopDirection)reader.ReadByte();
+        reader.Skip(8);
+        byte r = reader.ReadByte();
+        byte g = reader.ReadByte();
+        byte b = reader.ReadByte();
+        reader.Skip(1);
+        Name = reader.ReadString();
+
+        Color = Color.FromArgb(255, r, g, b);
+
     }
 }
