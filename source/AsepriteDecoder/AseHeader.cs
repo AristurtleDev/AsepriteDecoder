@@ -19,6 +19,8 @@ public sealed record AseHeader
     public ushort GridWidth { get; }
     public ushort GridHeight { get; }
 
+    public bool LayerOpacityIsValid => (Flags & HeaderFlags.LayerOpacityValid) != 0;
+
 
 
     internal AseHeader(AseBinaryReader reader)
@@ -26,7 +28,7 @@ public sealed record AseHeader
         FileSize = reader.ReadDword();
         MagicNumber = reader.ReadWord();
 
-        if(MagicNumber != 0xA5E0)
+        if (MagicNumber != 0xA5E0)
         {
             throw new InvalidMagicNumberException("Header magic number is invalid", MagicNumber);
         }

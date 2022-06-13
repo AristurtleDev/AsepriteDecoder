@@ -23,14 +23,33 @@
 namespace AsepriteDecoder.Chunks;
 
 /// <summary>
-///     Represents the bitmask flags that can be set for a
-///     <see cref="ColorProfileChunk"/>.
+///     Represents an entry in an external file chunk.
 /// </summary>
-[Flags]
-public enum ColorProfileFlags : ushort
+public sealed class ExternalFileEntry
 {
     /// <summary>
-    ///     Indicates that a special fixed gamma was used.
+    ///     Gets the ID of this entry.
     /// </summary>
-    UseSpecialFixedGamma = 1
+    public uint ID { get; }
+
+    /// <summary>
+    ///     Gets the name of this entry.
+    /// </summary>
+    public string Name { get; }
+
+    /// <summary>
+    ///     Creates a new <see cref="ExternalFileEntry"/> class instance
+    ///     initialized by the <see cref="AseBinaryReader"/> class instance
+    ///     provided.
+    /// </summary>
+    /// <param name="reader">
+    ///     The <see cref="AseBinaryReader"/> class instance used to initialize
+    ///     this instance.
+    /// </param>
+    internal ExternalFileEntry(AseBinaryReader reader)
+    {
+        ID = reader.ReadDword();
+        reader.Skip(8);
+        Name = reader.ReadString();
+    }
 }

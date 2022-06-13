@@ -2,5 +2,8 @@ namespace AsepriteDecoder;
 
 public enum CelType : ushort
 {
-    Raw
+    Raw = 0,
+    Linked = 1,
+    CompressedImage = 2,
+    CompressedTilemap = 3
 }

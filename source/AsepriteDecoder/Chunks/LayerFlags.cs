@@ -24,13 +24,43 @@ namespace AsepriteDecoder.Chunks;
 
 /// <summary>
 ///     Represents the bitmask flags that can be set for a
-///     <see cref="ColorProfileChunk"/>.
+///     <see cref="LayerChunk"/>.
 /// </summary>
 [Flags]
-public enum ColorProfileFlags : ushort
+public enum LayerFlags : ushort
 {
     /// <summary>
-    ///     Indicates that a special fixed gamma was used.
+    ///     Indicates that the layer is visible.
     /// </summary>
-    UseSpecialFixedGamma = 1
+    Visible = 1,
+
+    /// <summary>
+    ///     Indicates that the layer is editable.
+    /// </summary>
+    Editable = 2,
+
+    /// <summary>
+    ///     Indicates that the movement of the layer should be locked in the UI.
+    /// </summary>
+    LockMovement = 4,
+
+    /// <summary>
+    ///     Indicates that this layer is marked as a background layer.
+    /// </summary>
+    Background = 8,
+
+    /// <summary>
+    ///     Indicates that this layer prefers linked cels.
+    /// </summary>
+    PreferLinkedCels = 16,
+
+    /// <summary>
+    ///     Indicates that this layer should be displayed collapsed in the UI.
+    /// </summary>
+    DisplayedCollapsed = 32,
+
+    /// <summary>
+    ///     Indicates that this layer is a reference image layer.
+    /// </summary>
+    ReferenceLayer = 64
 }

@@ -24,13 +24,13 @@ namespace AsepriteDecoder.Chunks;
 
 /// <summary>
 ///     Represents the bitmask flags that can be set for a
-///     <see cref="ColorProfileChunk"/>.
+///     <see cref="CelExtraChunk"/>
 /// </summary>
 [Flags]
-public enum ColorProfileFlags : ushort
+public enum CelExtraFlags : uint
 {
     /// <summary>
-    ///     Indicates that a special fixed gamma was used.
+    ///     Indicates that precise bounds have been set.
     /// </summary>
-    UseSpecialFixedGamma = 1
+    PreciseBoundsSet = 1
 }
